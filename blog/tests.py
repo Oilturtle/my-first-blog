@@ -1,5 +1,5 @@
 from django.test import TestCase
 import datetime
 # Create your tests here.
-test3 = round(2.12345,1)
+test3 = int(datetime.timedelta(seconds=989).total_seconds())
 print(test3)

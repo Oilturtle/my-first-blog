@@ -1,5 +1,7 @@
 import datetime
+import matplotlib.pyplot as plt
 import os
+import numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
 import time
 import gspread
@@ -12,6 +14,8 @@ Schools = {}
 Wiseman = {"totalworking":datetime.timedelta(seconds= 0),
             "totaltime" : datetime.timedelta(seconds= 0)}
 grade_list=["고1","고2","고3"]
+from matplotlib import font_manager, rc
+
 def secondtotime(seconds):
     num = int(seconds)
     sec = num % 60
@@ -34,7 +38,44 @@ class Dailydata(object):
         self.data["Nobreak"] = alist[6]
         self.data["concenttime"] = alist[7]
         
-        
+def waterfallchart(seat,data):
+    studentname = Student_logs[seat-1].name
+    schoolname = Student_logs[seat-1].school
+    studentgrade = Student_logs[seat-1].grade
+    totaltime = data[8]
+    breaking1 = data[6].total_seconds()
+    breaking2 = data[7].total_seconds()
+    working = data[1].total_seconds()
+    y=[totaltime,0, breaking1,0, breaking2,0, working]
+    xlabel = ["total"," ","break1"," ","break2"," ","studying"]
+    xpos= np.arange(7)
+    plt.figure(1)
+    plt.bar(xpos, y)
+    plt.xticks(xpos,xlabel)
+    plt.savefig('img/{0}.png'.format("Study"), dpi=200)
+
+def focuschart(seat,data):
+
+    studentname = Student_logs[seat-1].name
+    schoolname = Student_logs[seat-1].school
+    studentgrade = Student_logs[seat-1].grade
+    focustime = data[2].total_seconds()
+    breakingtime = data[3].total_seconds()
+    xlabel=['AVE.Con.','AVE.Breaking']
+    y=[focustime, breakingtime]
+    xpos= np.arange(2)
+    plt.figure(2)
+    plt.bar(xpos, y)
+    plt.xticks(xpos,xlabel)
+    plt.savefig('img/{0}.png'.format("Focus"), dpi=200)
+    
+    test =1
+
+def patternchart(seat,data):
+    pass
+
+def monthpatternchart(seat,data):
+    pass
 class Student_log(object):
     name = ""
     school = ""
@@ -197,9 +238,17 @@ def getresult(seat,weakormonth):
     student_result.append(student.average["break1"]/student.average["Nobreak"])
     student_result.append(round(student.average["Nobreak"],1))
     student_result.append(round(student.totaldays/days*100,1))
-    
-    
-    result2 =  [
+    student_result.append(student.average["break1"])
+    student_result.append(student.average["break2"])
+    student_result.append(student.totaltime.total_seconds()/student.totaldays)
+    if weakormonth == "week": 
+        patternchart(seat,student)
+    else:
+        monthpatternchart(seat,student)
+    waterfallchart(seat,student_result)
+    focuschart(seat,student_result)
+
+    table =  [
                 ["","등급","result",grade+"평균","차이",school+"평균","차이","Wiseman","차이"],
                 ["총순공시간"],
                 ["평균순공시간/일"],
@@ -208,9 +257,10 @@ def getresult(seat,weakormonth):
                 ["자리비움횟수/일"],
                 ["출석률"]
                 ]
-    test = 1
 
-    return result2
+    result ={}
+    result["table"] = table
+    return True
 
 def getdata(seat,startdate,weekormonth):
     #firstday = startdate.strftime("%Y-%m-%d")    
@@ -223,11 +273,11 @@ def getdata(seat,startdate,weekormonth):
         enddate = startdate + datetime.timedelta(days=30)
     datagatheringfromgss(seat,startdate,enddate)
     getaverage()
-    result = getresult(seat,weekormonth)
+    
 
 
 
-    return result
+    return True
 Student_logs =[ Student_log("곽남주","동덕여고",3),
                 Student_log("이정안","동덕여고",3),
                 Student_log("전윤경","숙명여고",3),
@@ -253,6 +303,7 @@ for x in Student_logs:
     
 startdate = datetime.date(2018,10,12)
 getdata(1,startdate,"week")
+result = getresult(1,"week")
 
 test =1
 

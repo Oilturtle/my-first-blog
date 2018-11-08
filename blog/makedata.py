@@ -52,7 +52,7 @@ def waterfallchart(seat,data):
     plt.figure(1)
     plt.bar(xpos, y)
     plt.xticks(xpos,xlabel)
-    plt.savefig('blog/static/img/{0}.png'.format("Study"), dpi=200)
+    plt.savefig('blog/static/img/month{0}.png'.format("Study"), dpi=200)
 
 def focuschart(seat,data):
 
@@ -67,15 +67,46 @@ def focuschart(seat,data):
     plt.figure(2)
     plt.bar(xpos, y)
     plt.xticks(xpos,xlabel)
-    plt.savefig('blog/static/img/{0}.png'.format("Focus"), dpi=200)
+    plt.savefig('blog/static/img/month{0}.png'.format("Focus"), dpi=200)
     
     test =1
 
-def patternchart(seat,data):
-    pass
 
-def monthpatternchart(seat,data):
-    pass
+
+def monthpatternchart(seat,data,startdate):
+    studentname = Student_logs[seat-1].name
+    schoolname = Student_logs[seat-1].school
+    studentgrade = Student_logs[seat-1].grade
+    studentlog = Student_logs[seat-1].log
+    daylist = []
+    y1 = []
+    y2 = []
+    xlabel = []
+    for i in range(0,30):
+        tempday = startdate + datetime.timedelta(days=i)
+        daylist.append(tempday)
+        xlabel.append(tempday.strftime("%m/%d"))
+        if daylist[i] in studentlog.keys():
+            temp1 = studentlog[daylist[i]]["working"].total_seconds()
+            temp2 = studentlog[daylist[i]]["concenttime"].total_seconds()
+            y1.append(temp1)
+            y2.append(temp2)
+        else:
+            y1.append(0)
+            y2.append(0)
+    
+    
+    xpos= np.arange(30)
+    plt.figure(3)
+    plt.bar(xpos, y1)
+    plt.xticks(xpos,xlabel)
+    plt.savefig('blog/static/img/month{0}1.png'.format("pattern"), dpi=200)
+    plt.figure(4)
+    plt.bar(xpos, y2)
+    plt.xticks(xpos,xlabel)
+    plt.savefig('blog/static/img/month{0}2.png'.format("pattern"), dpi=200)
+    
+    test =1
 class Student_log(object):
     name = ""
     school = ""
@@ -222,7 +253,7 @@ def getaverage():
     
     return True
 
-def getresult(seat,weakormonth):
+def getresult(seat,weakormonth,startdate):
     #result = [[0 for rows in range(6)]for cols in range(9)]
     student = Student_logs[seat -1]
     grade= grade_list[student.grade -1]
@@ -242,9 +273,9 @@ def getresult(seat,weakormonth):
     student_result.append(student.average["break2"])
     student_result.append(student.totaltime.total_seconds()/student.totaldays)
     if weakormonth == "week": 
-        patternchart(seat,student)
+        pass
     else:
-        monthpatternchart(seat,student)
+        monthpatternchart(seat,student,startdate)
     waterfallchart(seat,student_result)
     focuschart(seat,student_result)
 
@@ -301,9 +332,9 @@ for x in Student_logs:
 
 
     
-startdate = datetime.date(2018,10,12)
-getdata(1,startdate,"week")
-result = getresult(1,"week")
+startdate = datetime.date(2018,9,19)
+getdata(1,startdate,"month")
+result = getresult(1,"month",startdate)
 
 test =1
 

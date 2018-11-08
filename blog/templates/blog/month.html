@@ -1,0 +1,145 @@
+{% load static %}
+<html>
+    <head>
+        <title>Month Report</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a href="/">홍*동님의 월간 학습 보고서</a></h1>
+        </div>
+
+        <div class="content container">
+            <h2>월간 통계</h2>
+            <div class="row">
+                <div class="col-md-8">
+                        <style type="text/css">
+                            .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+                            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+                            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+                            .tg .tg-jkcy{color:#3531ff;text-align:right;vertical-align:top}
+                            .tg .tg-p0nq{color:#fe0000;text-align:right}
+                            .tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+                            .tg .tg-0ord{text-align:right}
+                            .tg .tg-7qxi{background-color:#f9f9f9;color:#3531ff;text-align:right}
+                            .tg .tg-buh4{background-color:#f9f9f9;text-align:left;vertical-align:top}
+                            .tg .tg-llau{background-color:#f9f9f9;color:#000000;text-align:right}
+                            .tg .tg-zapm{background-color:#f9f9f9;text-align:right}
+                            .tg .tg-nob6{color:#000000;text-align:right;vertical-align:top}
+                            .tg .tg-lqy6{text-align:right;vertical-align:top}
+                            .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+                            .tg .tg-fymr{font-weight:bold;border-color:inherit;text-align:left;vertical-align:top}
+                            .tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}
+                            .tg .tg-200h{background-color:#f9f9f9;border-color:inherit;text-align:right}
+                            .tg .tg-vrwp{background-color:#f9f9f9;color:#fe0000;text-align:right}
+                            .tg .tg-quj4{border-color:inherit;text-align:right}
+                            .tg .tg-0lax{text-align:left;vertical-align:top}
+                            </style>
+                            <table class="tg">
+                              <tr>
+                                <th class="tg-0pky"></th>
+                                <th class="tg-1wig">등급</th>
+                                <th class="tg-fymr">Result</th>
+                                <th class="tg-fymr" colspan="2">고3 평균</th>
+                                <th class="tg-fymr" colspan="2">와이즈고 평균</th>
+                                <th class="tg-fymr" colspan="2">Wiseman</th>
+                              </tr>
+                              <tr>
+                                <td class="tg-btxf">총 순공시간</td>
+                                <td class="tg-zapm">4</td>
+                                <td class="tg-200h">126:00</td>
+                                <td class="tg-200h">119:30</td>
+                                <td class="tg-7qxi">+6:30</td>
+                                <td class="tg-200h">141:00</td>
+                                <td class="tg-vrwp">-15:00</td>
+                                <td class="tg-200h">157:00</td>
+                                <td class="tg-vrwp">-31:00</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-0pky">평균 순공 시간/일</td>
+                                <td class="tg-0ord">6</td>
+                                <td class="tg-quj4">4:00</td>
+                                <td class="tg-quj4">4:18</td>
+                                <td class="tg-p0nq">-0:18</td>
+                                <td class="tg-quj4">4:36</td>
+                                <td class="tg-p0nq">-0:36</td>
+                                <td class="tg-quj4">5:45</td>
+                                <td class="tg-p0nq">-1:45</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-btxf">평균 집중 시간/회</td>
+                                <td class="tg-zapm">1</td>
+                                <td class="tg-200h">0:43</td>
+                                <td class="tg-200h">0:30</td>
+                                <td class="tg-7qxi">+0:13</td>
+                                <td class="tg-200h">0:40</td>
+                                <td class="tg-7qxi">+0:03</td>
+                                <td class="tg-200h">0:43</td>
+                                <td class="tg-llau">0</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-0lax">자리비움 횟수</td>
+                                <td class="tg-lqy6">1</td>
+                                <td class="tg-lqy6">4.7</td>
+                                <td class="tg-lqy6">8.3</td>
+                                <td class="tg-jkcy">-3.6</td>
+                                <td class="tg-lqy6">6.8</td>
+                                <td class="tg-jkcy">-2.1</td>
+                                <td class="tg-lqy6">4.7</td>
+                                <td class="tg-nob6">0</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-buh4">출석률</td>
+                                <td class="tg-zapm">4</td>
+                                <td class="tg-zapm">97%</td>
+                                <td class="tg-zapm">89.8%</td>
+                                <td class="tg-7qxi">+7.2%</td>
+                                <td class="tg-zapm">98.5%</td>
+                                <td class="tg-vrwp">-1.5%</td>
+                                <td class="tg-zapm">100%</td>
+                                <td class="tg-vrwp">-3%</td>
+                              </tr>
+                            </table>
+                </div>
+            </div>
+        </div>
+        <div class="content container">
+            <div class="left-box">
+                <div class="col-md-8">
+                <h2>순공부량</h2>
+                <div><img src="/static/img/monthStudy.png" width="500"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content container">
+            <div class="right-box">
+                <div class="col-md-8">
+                <h2>집중력</h2>
+                <div><img src="/static/img/monthFocus.png" width="500"></div>
+                
+                </div>
+            </div>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                <h2>월간 순공부 시간 패턴</h2>
+                <div><img src="/static/img/monthpattern1.png" width="500"></div>
+                
+                </div>
+            </div>
+        </div>
+        <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+                    <h2>월간 집중 시간 패턴</h2>
+                    <div><img src="/static/img/monthpattern2.png" width="500"></div>
+                    
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

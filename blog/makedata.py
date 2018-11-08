@@ -52,7 +52,7 @@ def waterfallchart(seat,data):
     plt.figure(1)
     plt.bar(xpos, y)
     plt.xticks(xpos,xlabel)
-    plt.savefig('img/{0}.png'.format("Study"), dpi=200)
+    plt.savefig('blog/static/img/{0}.png'.format("Study"), dpi=200)
 
 def focuschart(seat,data):
 
@@ -67,7 +67,7 @@ def focuschart(seat,data):
     plt.figure(2)
     plt.bar(xpos, y)
     plt.xticks(xpos,xlabel)
-    plt.savefig('img/{0}.png'.format("Focus"), dpi=200)
+    plt.savefig('blog/static/img/{0}.png'.format("Focus"), dpi=200)
     
     test =1
 
